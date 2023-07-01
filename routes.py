@@ -62,3 +62,16 @@ def update_recipe(id: str, request: Request, recipe: RecipeUpdate = Body(...)):
     raise HTTPException(
         status_code=status.HTTP_400_BAD_REQUEST, detail=f"Recipe with ID {id} not found"
     )
+
+
+@router.delete("/{id}", response_description="Delete a recipe")
+def delete_recipe(id: str, request: Request, response: Response):
+    delete_result = request.app.database["recipes"].delete_one({"_id": id})
+
+    if delete_result.deleted_count == 1:
+        response.status_code = status.HTTP_204_NO_CONTENT
+        return response
+
+    raise HTTPException(
+        status_code=status.HTTP_404_NOT_FOUND, detail=f"Recipe with ID {id} not found"
+    )
