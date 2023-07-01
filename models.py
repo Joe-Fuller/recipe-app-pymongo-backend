@@ -14,8 +14,8 @@ class Recipe(BaseModel):
     name: str = Field(...)
     timeToCook: str = Field(...)
     image: str = Field(...)
-    ingredients = List[Dict[str, str]] = Field(...)
-    instructions = List[str] = Field(...)
+    ingredients: List[Dict[str, str]] = Field(...)
+    instructions: List[str] = Field(...)
 
     class Config:
         schema_extra = {
