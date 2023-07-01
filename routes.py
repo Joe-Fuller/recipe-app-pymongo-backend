@@ -21,3 +21,9 @@ def create_recipe(request: Request, recipe: Recipe = Body(...)):
     )
 
     return created_recipe
+
+
+@router.get("/", response_description="List all recipes", response_model=List[Recipe])
+def list_recipes(request: Request):
+    recipes = list(request.app.database["recipes"]).find(limit=100)
+    return recipes
