@@ -38,3 +38,27 @@ def find_recipe(id: str, request: Request):
     raise HTTPException(
         status_code=status.HTTP_404_NOT_FOUND, detail=f"Recipe with ID {id} not found"
     )
+
+
+@router.put("/{id}", response_description="Update a recipe", response_model=Recipe)
+def update_recipe(id: str, request: Request, recipe: RecipeUpdate = Body(...)):
+    recipe = {k: v for k, v in recipe.dict().items() if v is not None}
+    if len(recipe) >= 1:
+        update_result = request.app.database["recipes"].update_one(
+            {"_id": id}, {"$set": recipe}
+        )
+
+        if update_result.modified_count == 0:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail=f"Recipe with ID {id} not found",
+            )
+
+    if (
+        existing_book := request.app.database["recipes"].find_one({"_id": id})
+    ) is not None:
+        return existing_book
+
+    raise HTTPException(
+        status_code=status.HTTP_400_BAD_REQUEST, detail=f"Recipe with ID {id} not found"
+    )
