@@ -6,7 +6,6 @@ html = urllib.request.urlopen("https://www.bbcgoodfood.com/recipes/vegan-sponge"
 
 soup = BeautifulSoup(html, "html.parser")
 
-# scripts = soup.find_all("scripts")
 scripts = soup.find_all(
     lambda tag: tag.name == "script" and "recipeIngredient" in tag.text
 )
@@ -15,10 +14,6 @@ schema = scripts[0]
 text = schema.get_text()
 data = json.loads(text)
 
-# instructions = data["recipeInstructions"]
-# print(instructions[0]["text"])
-
-
 recipeData = {
     "name": data["name"],
     "timeToCook": data["totalTime"],
@@ -26,6 +21,5 @@ recipeData = {
     "instructions": [x["text"] for x in data["recipeInstructions"]],
     "imageUrl": data["image"]["url"],
 }
-
 
 print(recipeData)
