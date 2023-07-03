@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib.request
 
-line = urllib.request.urlopen("https://www.bbcgoodfood.com/recipes/vegan-sponge").read()
-print(line)
+html = urllib.request.urlopen("https://www.bbcgoodfood.com/recipes/vegan-sponge").read()
 
-# soup = BeautifulSoup
+soup = BeautifulSoup(html, "html.parser")
+print(soup)
