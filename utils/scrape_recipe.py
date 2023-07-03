@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import urllib.request
 import json
-from saveRecipe import save_recipe
+from utils.save_recipe import save_recipe
 
 
 def scrape_recipe(url):
