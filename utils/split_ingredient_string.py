@@ -1,14 +1,6 @@
-def split_ingredient_string(ingredient_string):
-    ingredient_string = ingredient_string.lower()
+import re
 
-    name = ""
-    amount = ""
-    units = ""
-
-    return {name, amount, units}
-
-
-unitCorrelation = {
+unit_correlation = {
     # Odd Cookery Units
     "thumb": ["thumb"],
     "can ": ["can ", "400g can", "15-16oz can"],
@@ -40,3 +32,26 @@ unitCorrelation = {
     "can": ["can", "cans"],
     "jar": ["jar", "jars"],
 }
+
+
+def split_ingredient_string(ingredient_string):
+    ingredient_string = ingredient_string.lower()
+
+    name = ""
+    amount = ""
+    units = ""
+
+    for unit_key, unit_values in unit_correlation.items():
+        found_unit = [unit for unit in unit_values if unit in ingredient_string]
+
+        if found_unit:
+            units = unit_key
+            ingredient_string = re.sub(units, " ", ingredient_string)
+            break
+
+    print(units, ingredient_string)
+
+    return {name, amount, units}
+
+
+split_ingredient_string("1 tsp butter")
