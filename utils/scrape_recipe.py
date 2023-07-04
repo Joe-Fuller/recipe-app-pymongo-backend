@@ -37,4 +37,4 @@ def scrape_recipe(url):
     save_recipe(recipeData)
 
 
-scrape_recipe("https://www.bbcgoodfood.com/recipes/roasted-aubergine-tomato-curry")
+# scrape_recipe("https://www.bbcgoodfood.com/recipes/roasted-aubergine-tomato-curry")
