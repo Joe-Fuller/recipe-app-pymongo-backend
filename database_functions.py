@@ -34,5 +34,9 @@ def update_recipe(recipe_id, updates):
     collection.update_one({"_id": ObjectId(recipe_id)}, {"$set": updates}, upsert=True)
 
 
+def clear_database():
+    collection.drop()
+
+
 if __name__ == "__main__":
     dbname = get_database()

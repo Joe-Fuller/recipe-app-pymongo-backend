@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
 import urllib.request
 import json
-from save_recipe import save_recipe
-from split_ingredient_string import split_ingredient_string
+from utils.save_recipe import save_recipe
+from utils.split_ingredient_string import split_ingredient_string
 
 
 def scrape_recipe(url):
