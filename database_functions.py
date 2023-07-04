@@ -11,18 +11,22 @@ def get_database():
 
 
 dbname = get_database()
-collection_name = dbname["recipes"]
+collection = dbname["recipes"]
 
 
 def get_recipes():
-    recipes = [recipe for recipe in collection_name.find({})]
+    recipes = [recipe for recipe in collection.find({})]
 
     return recipes
 
 
 def save_recipe(recipe):
-    collection_name.insert_one(recipe)
+    collection.insert_one(recipe)
     print("Saved Recipe: ", recipe)
+
+
+def delete_recipe(recipe_id):
+    collection.delete_one({"_id": recipe_id})
 
 
 if __name__ == "__main__":
