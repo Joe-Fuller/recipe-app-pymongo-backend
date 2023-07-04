@@ -1,4 +1,4 @@
-from getDatabase import get_database
+from get_database import get_database
 
 dbname = get_database()
 collection_name = dbname["recipes"]
