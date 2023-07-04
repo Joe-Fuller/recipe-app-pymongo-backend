@@ -59,8 +59,6 @@ def split_ingredient_string(ingredient_string):
     amount = " ".join(parts[0:split])
     name = " ".join(parts[split:])
 
-    print({name, amount, units})
-
     return {name, amount, units}
 
 
