@@ -34,8 +34,6 @@ def scrape_recipe(url):
         "imageUrl": imageUrl,
     }
 
-    print(recipeData)
-
     save_recipe(recipeData)
 
 
