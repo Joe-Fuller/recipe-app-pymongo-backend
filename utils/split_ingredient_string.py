@@ -56,8 +56,8 @@ def split_ingredient_string(ingredient_string):
     while re.search("\d", parts[split]):
         split += 1
 
-    amount = parts[0:split]
-    name = parts[split:]
+    amount = " ".join(parts[0:split])
+    name = " ".join(parts[split:])
 
     print({name, amount, units})
 
