@@ -49,8 +49,6 @@ def split_ingredient_string(ingredient_string):
             ingredient_string = re.sub(units, " ", ingredient_string)
             break
 
-    print(units, ingredient_string)
-
     parts = ingredient_string.split()
     split = 0
     while re.search("\d", parts[split]):
@@ -59,7 +57,7 @@ def split_ingredient_string(ingredient_string):
     amount = " ".join(parts[0:split])
     name = " ".join(parts[split:])
 
-    return {name, amount, units}
+    return {"name": name, "amount": amount, "units": units}
 
 
 split_ingredient_string("1 tsp butter")

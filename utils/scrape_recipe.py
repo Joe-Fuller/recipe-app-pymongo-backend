@@ -1,8 +1,8 @@
 from bs4 import BeautifulSoup
 import urllib.request
 import json
-from utils.save_recipe import save_recipe
-import split_ingredient_string
+from save_recipe import save_recipe
+from split_ingredient_string import split_ingredient_string
 
 
 def scrape_recipe(url):
@@ -26,8 +26,17 @@ def scrape_recipe(url):
     instructions = [instruction["text"] for instruction in data["recipeInstructions"]]
     imageUrl = data["image"]["url"]
 
-    recipeData = {name, timeToCook, ingredients, instructions, imageUrl}
+    recipeData = {
+        "name": name,
+        "timeToCook": timeToCook,
+        "ingredients": ingredients,
+        "instructions": instructions,
+        "imageUrl": imageUrl,
+    }
 
     print(recipeData)
 
     save_recipe(recipeData)
+
+
+scrape_recipe("https://www.bbcgoodfood.com/recipes/roasted-aubergine-tomato-curry")
